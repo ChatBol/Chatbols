@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adrian - Asistente Legal de Fútbol Boliviano</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
+        #chat { height: 300px; border: 1px solid #ccc; overflow-y: scroll; padding: 10px; margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+    <h1>Adrian - Asistente Legal de Fútbol Boliviano</h1>
+    <div id="chat"></div>
+    <input type="text" id="userInput" placeholder="Haz tu pregunta aquí...">
+    <button onclick="enviarPregunta()">Enviar</button>
+
+    <script>
+        const chat = document.getElementById('chat');
+        const userInput = document.getElementById('userInput');
+
+        function enviarPregunta() {
+            const pregunta = userInput.value.trim();
+            if (pregunta) {
+                mostrarMensaje('Usuario: ' + pregunta);
+                const respuesta = obtenerRespuesta(pregunta);
+                mostrarMensaje('Adrian: ' + respuesta);
+                userInput.value = '';
+            }
+        }
+
+        function mostrarMensaje(mensaje) {
+            chat.innerHTML += '<p>' + mensaje + '</p>';
+            chat.scrollTop = chat.scrollHeight;
+        }
+
+        function obtenerRespuesta(pregunta) {
+            pregunta = pregunta.toLowerCase();
+            if (pregunta.includes('hola') || pregunta.includes('saludos')) {
+                return '¡Hola! Soy Adrian, tu asistente legal para temas de fútbol en Bolivia. ¿En qué puedo ayudarte?';
+            } else if (pregunta.includes('derechos') || pregunta.includes('leyes') || pregunta.includes('legal')) {
+                return 'En Bolivia, los temas legales relacionados con el fútbol están regulados por la Federación Boliviana de Fútbol (FBF) y las leyes deportivas nacionales. ¿Tienes alguna pregunta específica sobre derechos de jugadores, contratos o regulaciones?';
+            } else if (pregunta.includes('futbol') || pregunta.includes('fútbol')) {
+                return 'El fútbol en Bolivia está organizado por la Federación Boliviana de Fútbol. Existen leyes que regulan los contratos de jugadores, los derechos de transmisión y la organización de torneos. ¿Necesitas información sobre algún aspecto legal específico?';
+            } else {
+                return 'Lo siento, esa pregunta no está relacionada con temas legales de fútbol en Bolivia. Mi conocimiento se limita a este tema específico. ¿Puedo ayudarte con algo más sobre leyes o derechos en el fútbol boliviano?';
+            }
+        }
+
+        // Saludo inicial
+        mostrarMensaje('Adrian: ¡Hola! Soy Adrian, tu asistente legal para temas de fútbol en Bolivia. ¿En qué puedo ayudarte?');
+    </script>
+</body>
+</html>
